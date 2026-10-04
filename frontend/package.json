@@ -1,0 +1,24 @@
+{
+  "name": "cloud-issue-tracker",
+  "version": "1.0.0",
+  "description": "Starter application used across the Cloud Computing and Cloud Security \r labs. \r ## Lab 1 - Development environment verified - Static HTML structure created - CSS interface created - Git repository prepare",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server . -p 8080"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/M0Wael/cloud-issue-tracker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/M0Wael/cloud-issue-tracker/issues"
+  },
+  "homepage": "https://github.com/M0Wael/cloud-issue-tracker#readme",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
