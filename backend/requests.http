@@ -1,0 +1,30 @@
+@baseUrl = http://localhost:3000
+
+### T01 View all issues
+GET {{baseUrl}}/api/issues
+
+### T02 Create a valid issue
+POST {{baseUrl}}/api/issues
+Content-Type: application/json
+
+{
+  "title": "Printer unavailable",
+  "description": "The shared printer is not responding.",
+  "priority": "Medium"
+}
+
+### T05 Change issue status
+PATCH {{baseUrl}}/api/issues/ISS-101/status
+Content-Type: application/json
+
+{
+  "status": "Resolved"
+}
+
+### T07 Update an unknown issue
+PATCH {{baseUrl}}/api/issues/does-not-exist/status
+Content-Type: application/json
+
+{
+  "status": "Resolved"
+}

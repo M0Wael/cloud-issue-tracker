@@ -1,0 +1,175 @@
+﻿{
+  "info": {
+    "_postman_id": "b4e8a920-4c11-4d8e-9a2b-1f2e3d4c5b6a",
+    "name": "Cloud Issue Tracker API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "View issues",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/issues",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "issues"]
+        }
+      }
+    },
+    {
+      "name": "Create issue",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Printer unavailable\",\n  \"description\": \"The shared printer is not responding.\",\n  \"priority\": \"Medium\"\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/issues",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "issues"]
+        }
+      }
+    },
+    {
+      "name": "Change issue status",
+      "request": {
+        "method": "PATCH",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"status\": \"Resolved\"\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/issues/ISS-101/status",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "issues", "ISS-101", "status"]
+        }
+      }
+    },
+    {
+      "name": "Invalid Create Issue",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"\",\n  \"description\": \"Missing valid title\",\n  \"priority\": \"Urgent\"\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/issues",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "issues"]
+        }
+      }
+    },
+    {
+      "name": "Invalid Status Change",
+      "request": {
+        "method": "PATCH",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"status\": \"Deleted\"\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/issues/ISS-101/status",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "issues", "ISS-101", "status"]
+        }
+      }
+    },
+    {
+      "name": "Update Unknown Issue",
+      "request": {
+        "method": "PATCH",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"status\": \"Resolved\"\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/issues/does-not-exist/status",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "issues", "does-not-exist", "status"]
+        }
+      }
+    },
+    {
+      "name": "Create Issue with Server-Owned Fields",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": \"HACKED-1\",\n  \"title\": \"Projector flickering\",\n  \"description\": \"The projector in room B204 flickers.\",\n  \"priority\": \"Low\",\n  \"status\": \"Resolved\",\n  \"createdAt\": \"2000-01-01T00:00:00.000Z\"\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/issues",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "issues"]
+        }
+      }
+    },
+    {
+      "name": "Create Issue Without JSON",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "text/plain" }],
+        "body": {
+          "mode": "raw",
+          "raw": "title=Printer"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/issues",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "issues"]
+        }
+      }
+    },
+    {
+      "name": "Create Issue with Malformed JSON",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Printer unavailable\",\n  \"description\": \"The shared printer is not responding.\",\n  \"priority\": \"Medium\",\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/issues",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "issues"]
+        }
+      }
+    },
+    {
+      "name": "Unknown Route",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/fake-url",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "fake-url"]
+        }
+      }
+    }
+  ]
+}
